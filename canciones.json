@@ -1,0 +1,85 @@
+{
+  "canciones": [
+    {
+      "id": "1",
+      "nombre": "Puñaladas",
+      "artista": "Amigo de Artistas, Tote, Lauta",
+      "album": "Puñaladas",
+      "genero": "Pop",
+      "anio": 2025,
+      "imagen": "https://i.scdn.co/image/ab67616d0000b273de0489bb178b9c1eebf1b4a1",
+      "url": "https://open.spotify.com/embed/track/4AL4EamHEBKPpdcFRkYdXN?utm_source=generator"
+    },
+    {
+      "id": "2",
+      "nombre": "El Fantasma",
+      "artista": "Árbol",
+      "album": "Guau!",
+      "genero": "Rock",
+      "anio": 2004,
+      "imagen": "https://i.scdn.co/image/ab67616d0000b273c2f2ecbee36586c59284f96d",
+      "url": "https://open.spotify.com/embed/track/0N361WhEqVunVl5ZBkfd70?utm_source=generator"
+    },
+    {
+      "id": "3",
+      "nombre": "Algo Tú",
+      "artista": "Beéle & Shakira",
+      "album": "Shakira Shakira No Rio - As Melhores",
+      "genero": "Pop",
+      "anio": 2026,
+      "imagen": "http://i.scdn.co/image/ab67616d0000b273e938517baf9bd13b8ba72455",
+      "url": "https://open.spotify.com/embed/track/1dHbcmMm9bov1q4lG7Q4nQ?utm_source=generator"
+    },
+    {
+      "id": "4",
+      "nombre": "Dolores Lindos",
+      "artista": "Arquero & Sebastián Teysera",
+      "album": "Dolores Lindos",
+      "genero": "Trap",
+      "anio": 2023,
+      "imagen": "https://i.scdn.co/image/ab67616d0000b2738a7d336cb8d6921f6217b458",
+      "url": "https://open.spotify.com/embed/track/4N01NxyzZzsfWhvqskiZ00?utm_source=generator"
+    },
+    {
+      "id": "5",
+      "nombre": "Manchild",
+      "artista": "Aiki",
+      "album": "Manchild",
+      "genero": "Trap",
+      "anio": 2025,
+      "imagen": "https://i.scdn.co/image/ab67616d0000b27312267561806dc28464b0816e",
+      "url": "https://open.spotify.com/embed/track/3jjCwnmjZqQQIomcC1PSUd?utm_source=generator"
+    },
+    {
+      "id": "6",
+      "nombre": "Save Me Love",
+      "artista": "Kygo",
+      "album": "Save me love",
+      "genero": "Pop",
+      "anio": 2025,
+      "imagen": "https://i.scdn.co/image/ab67616d0000b273124a6d221e2a68ee6ac2b020",
+      "url": "https://open.spotify.com/embed/track/5ObyGDxNWH0Uuuk3NvC5r8?utm_source=generator"
+    },
+    {
+      "id": "8",
+      "nombre": "Fast Car",
+      "artista": "Jonas Blue",
+      "album": "Dakota",
+      "genero": "Electronica",
+      "anio": 2025,
+      "imagen": "https://i.scdn.co/image/ab67616d0000b2735b6bcc59c3562a6f362344c6",
+      "url": "https://open.spotify.com/embed/track/1SN1vSPsr4V4tIUTR3s8YW?utm_source=generator"
+    },
+    {
+      "nombre": "A Sky Full Stars",
+      "artista": "Coldplay",
+      "album": "Ghost stories",
+      "anio": "2024",
+      "url": "https://open.spotify.com/embed/track/0FDzzruyVECATHXKHFs9eJ?utm_source=generator",
+      "imagen": "https://i.scdn.co/image/ab67616d00001e02e5a95573f1b91234630fd2cf",
+      "genero": "Electronica",
+      "id": "L72P1IHMnSc"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

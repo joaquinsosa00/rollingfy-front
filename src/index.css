@@ -1,0 +1,38 @@
+.form-control::placeholder {
+  color: #aaa;
+}
+.form-control:focus {
+  border-color: #23a3179f ;
+  outline: none ;
+  box-shadow: 0 0 8px rgba(38, 219, 32, 0.555) ; 
+}
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  z-index: 10;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.password-toggle:hover {
+  color: #1bf049fb; 
+  cursor: pointer;
+}
+.btnMusic {
+  position: absolute;
+  right: 10px;
+  top: 38px;
+  cursor: pointer;
+}
+
+.btnGoogle {
+  size: 20px;
+}
+
+.input:focus {
+  box-shadow: none;
+}
