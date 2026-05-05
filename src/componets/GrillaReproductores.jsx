@@ -25,11 +25,11 @@ const GrillaReproductores = () => {
   
   const servidor = window.location.hostname;
 
-
+const URL_API = import.meta.env.VITE_API_URL || "http://localhost:3001/canciones";
 
   
   useEffect(() => {
-    fetch(`http://${servidor}:3001/canciones`)
+    fetch(URL_API)
       .then(respuesta => respuesta.json())
       .then(datos => setCanciones(datos))
       .catch(error => console.error("Error cargando canciones:", error));
