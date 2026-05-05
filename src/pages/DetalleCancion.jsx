@@ -11,7 +11,7 @@ const DetalleCancion = () => {
   const servidor = window.location.hostname;
 
   useEffect(() => {
-    fetch(URL_API)
+    fetch(`${URL_API}/${id}`)
       .then((respuesta) => respuesta.json())
       .then((datos) => {
         setCancion(datos);
