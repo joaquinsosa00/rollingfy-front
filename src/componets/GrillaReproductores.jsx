@@ -112,7 +112,7 @@ const URL_API = import.meta.env.VITE_API_URL || "http://localhost:3001/canciones
           <Button 
           as={Link} 
           to={`/detalle/${cancion.id}`} 
-          variant="outline-success" 
+          variant="outline-warning"
           size=""
           className="text-decoration-none rounded-pill fw-bold mt-2 align-self-start" 
         >
