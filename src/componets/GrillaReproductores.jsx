@@ -114,7 +114,7 @@ const URL_API = import.meta.env.VITE_API_URL || "http://localhost:3001/canciones
           to={`/detalle/${cancion.id}`} 
           variant="outline-success" 
           size="sm"
-          className="text-decoration-none w-30 rounded-pill fw-bold mt-2 align-self-start" 
+          className="text-decoration-none rounded-pill fw-bold mt-2 align-self-start" 
         >
           Ver Detalle
         </Button>
