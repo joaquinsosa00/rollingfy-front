@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+const URL_API = import.meta.env.VITE_API_URL || "http://localhost:3001/canciones";
 
 const DetalleCancion = () => {
   const { id } = useParams();
@@ -10,7 +11,7 @@ const DetalleCancion = () => {
   const servidor = window.location.hostname;
 
   useEffect(() => {
-    fetch(`http://${servidor}:3001/canciones/${id}`)
+    fetch(URL_API)
       .then((respuesta) => respuesta.json())
       .then((datos) => {
         setCancion(datos);

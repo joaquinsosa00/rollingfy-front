@@ -19,11 +19,13 @@ const FormularioCancion = ({ titulo }) => {
   // Detecta automáticamente si estás en 'localhost' o en tu IP '192.168.X.X'
   const servidor = window.location.hostname;
 
+  const URL_API = import.meta.env.VITE_API_URL || "http://localhost:3001/canciones";
+
   const buscarCancion = async () => {
     if (titulo === "Editar Canción") {
       try {
         // 1. Hacemos la petición REAL a json-server pidiendo la canción por su ID
-        const respuesta = await fetch(`http://${servidor}:3001/canciones/${id}`);
+        const respuesta = await fetch(`${URL_API}/${id}`);
 
         if (respuesta.ok) {
           const cancionBuscada = await respuesta.json();
@@ -51,7 +53,7 @@ const FormularioCancion = ({ titulo }) => {
   const onSubmit = async (cancion) => {
     if (titulo === "Crear Canción") {
       try {
-        const respuesta = await fetch(`http://${servidor}:3001/canciones`, {
+        const respuesta = await fetch(URL_API, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -77,7 +79,7 @@ const FormularioCancion = ({ titulo }) => {
     else {
       // AQUÍ OCURRE LA MAGIA DE LA EDICIÓN (Usamos método PUT y le pasamos el ID en la URL)
       try {
-        const respuesta = await fetch(`http://${servidor}:3001/canciones/${id}`, {
+        const respuesta = await fetch(`${URL_API}/${id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

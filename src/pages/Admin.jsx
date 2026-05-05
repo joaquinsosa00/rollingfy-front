@@ -3,6 +3,8 @@ import { Button, Table, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
+const URL_API = import.meta.env.VITE_API_URL || "http://localhost:3001/canciones";
+
 const Admin = () => {
   // Estado para guardar las canciones
   const [canciones, setCanciones] = useState([]);
@@ -13,7 +15,7 @@ const Admin = () => {
   // Función para obtener las canciones del JSON
   const obtenerCanciones = async () => {
     try {
-      const respuesta = await fetch(`http://${servidor}:3001/canciones`);
+      const respuesta = await fetch(URL_API);
 
       if (respuesta.ok) {
         const datos = await respuesta.json();
