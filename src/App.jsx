@@ -9,6 +9,7 @@ import Admin from "./pages/Admin";
 import Footer from "./componets/Footer";
 import FormularioCancion from "./pages/Canciones/FormularioCancion";
 import { useState, useEffect, useContext } from "react";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function App() {
   const sesionUsuario = JSON.parse(localStorage.getItem("usuarioKey")) || false;
