@@ -10,10 +10,10 @@ const GrillaReproductores = () => {
 
   const [esCelular, setEsCelular] = useState(window.innerWidth < 768);
 
-  
+
   const [cantidadVisible, setCantidadVisible] = useState(window.innerWidth < 768 ? 2 : 8);
 
-  
+
   useEffect(() => {
     const revisarTamanioPantalla = () => {
       setEsCelular(window.innerWidth < 768);
@@ -22,12 +22,12 @@ const GrillaReproductores = () => {
     return () => window.removeEventListener("resize", revisarTamanioPantalla);
   }, []);
 
-  
+
   const servidor = window.location.hostname;
 
-const URL_API = import.meta.env.VITE_API_URL || "http://localhost:3001/canciones";
+  const URL_API = import.meta.env.VITE_API_URL || "http://localhost:3001/canciones";
 
-  
+
   useEffect(() => {
     fetch(URL_API)
       .then(respuesta => respuesta.json())
@@ -35,16 +35,16 @@ const URL_API = import.meta.env.VITE_API_URL || "http://localhost:3001/canciones
       .catch(error => console.error("Error cargando canciones:", error));
   }, []);
 
-  
+
   const mostrarMasCanciones = () => {
     if (esCelular) {
-      setCantidadVisible(cantidadVisible + 2); 
+      setCantidadVisible(cantidadVisible + 2);
     } else {
-      setCantidadVisible(cantidadVisible + 8); 
+      setCantidadVisible(cantidadVisible + 8);
     }
   };
 
-  
+
   const cancionesFiltradas = canciones.filter(cancion => {
     const coincideGenero = generoSeleccionado === 'Todos' || cancion.genero === generoSeleccionado;
     const textoBuscado = busqueda.toLowerCase();
@@ -94,8 +94,7 @@ const URL_API = import.meta.env.VITE_API_URL || "http://localhost:3001/canciones
 
 
       <Row className="g-3">
-        {cancionesFiltradas.map((cancion) => (
-
+        {cancionesAMostrar.map((cancion) => (
           <Col xs={12} sm={6} md={4} lg={3} key={cancion.id} className="mb-3">
             <div className="h-100 d-flex flex-column">
               <iframe
@@ -109,15 +108,15 @@ const URL_API = import.meta.env.VITE_API_URL || "http://localhost:3001/canciones
                 loading="lazy"
                 title={cancion.nombre}
               ></iframe>
-          <Button 
-          as={Link} 
-          to={`/detalle/${cancion.id}`} 
-          variant="outline-success"
-          size=""
-          className="text-decoration-none rounded-pill fw-bold mt-2 w-100" 
-        >
-          Ver Detalle
-        </Button>
+              <Button
+                as={Link}
+                to={`/detalle/${cancion.id}`}
+                variant="outline-success"
+                size=""
+                className="text-decoration-none rounded-pill fw-bold mt-2 w-100"
+              >
+                Ver Detalle
+              </Button>
             </div>
           </Col>
 
