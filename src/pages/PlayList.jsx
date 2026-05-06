@@ -55,10 +55,10 @@ const Playlist = () => {
 
   if (!usuario) {
     return (
-      <Container>
+      <Container className="bg-black">
        <div className="bg-black text-white min-vh-100 py-5">
         <Container>
-          <h2>Debes iniciar sesión para ver tu playlist</h2>
+          <h2>Debes iniciar sesión como usuario para ver la playlist</h2>
 
           <Link to="/login">
             <Button variant="outline-light" className="rounded-pill mt-3">
