@@ -1,14 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Button, Container, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { FaBars } from 'react-icons/fa';
-import { AuthContext } from '../context/AuthContext';
+import { useState, useEffect } from 'react';
 import logoImagen from "../assets/Logo.png";
 
+const NavBar = ({ usuarioLogueado, setUsuarioLogueado, busqueda, setBusqueda }) => {
 
-const NavBar = () => {
 
-  const { usuarioLogueado, logout } = useContext(AuthContext);
+  const logout = () => {
+    localStorage.removeItem("usuarioKey");
+    setUsuarioLogueado(false);
+  };
+
+
 
   return (
     <Navbar sticky="top" expand="lg" className="bg-dark" data-bs-theme="dark">
@@ -27,8 +32,16 @@ const NavBar = () => {
         </Navbar.Toggle>
 
         <Navbar.Collapse id="navbarScroll">
-          <Form className="d-flex mx-auto" style={{ maxWidth: '400px', width: '100%' }}>
-            <Form.Control type="search" placeholder="Buscar..." className="me-2" />
+          <Form className="d-flex mx-auto" 
+            style={{ maxWidth: '400px', width: '100%' }}
+            onSubmit={(e) => e.preventDefault()}>
+            <Form.Control 
+              type="search" 
+              placeholder="Buscar..." 
+              className="me-2" 
+              value={busqueda}
+              onChange={(e) => setBusqueda(e.target.value)}
+            />
             <Button variant="outline-success">Buscar</Button>
           </Form>
 
@@ -48,16 +61,20 @@ const NavBar = () => {
 
 
                 {usuarioLogueado.rol === 'admin' && (
-                  <Nav.Link as={NavLink} to="/admin" className="text-success-emphasis">Panel Admin</Nav.Link>
+                  <Nav.Link as={NavLink} to="/admin" className="text-success-emphasis">
+                    Panel Admin
+                  </Nav.Link>
                 )}
 
                 <NavDropdown
-                  title={`Hola, ${usuarioLogueado.nombre}`}
+                  title={`Hola, ${usuarioLogueado.nombreUsuario}`}
                   id="navbar-user-dropdown"
                   align="end"
                   menuVariant="dark"
                 >
-                  <NavDropdown.Item onClick={logout}>Cerrar Sesión</NavDropdown.Item>
+                  <NavDropdown.Item onClick={logout}>
+                    Cerrar Sesión
+                  </NavDropdown.Item>
                 </NavDropdown>
               </>
             )}
@@ -67,6 +84,6 @@ const NavBar = () => {
       </Container>
     </Navbar>
   );
-}
+};
 
 export default NavBar;
