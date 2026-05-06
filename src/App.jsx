@@ -8,12 +8,15 @@ import DetalleCancion from "./pages/DetalleCancion";
 import Admin from "./pages/Admin";
 import Footer from "./componets/Footer";
 import FormularioCancion from "./pages/Canciones/FormularioCancion";
-import { useState, useEffect, useContext } from "react";
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import Playlist from "./pages/PlayList";
+import RutaProtegida from "./componets/ProtectorAdmin";
+import AdminUsuarios from "./Pages/Adminusuarios";
+import { useState, useEffect } from "react";
 
 function App() {
   const sesionUsuario = JSON.parse(localStorage.getItem("usuarioKey")) || false;
-  const [usuarioLogueado, setUsuarioLogueado] = useState(sesionUsuario);
+  const [usuarioLogueado, setUsuarioLogueado] = useState(sesionUsuario);  
+  const [busqueda, setBusqueda] = useState("");
 
   useEffect(() => {
     localStorage.setItem("usuarioKey", JSON.stringify(usuarioLogueado));
@@ -25,29 +28,61 @@ function App() {
         <NavBar
           usuarioLogueado={usuarioLogueado}
           setUsuarioLogueado={setUsuarioLogueado}
+          busqueda={busqueda}
+          setBusqueda={setBusqueda}
         />
+
         <Routes>
           <Route
             path="/Login"
             element={<Login setUsuarioLogueado={setUsuarioLogueado} />}
           />
+
           <Route path="/Registro" element={<Registro />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/detalle/:id" element={<DetalleCancion />} />
-          <Route path="/admin" element={<Admin />} />
+
+          <Route path="/" element={<Home busqueda={busqueda} />} />
+
+          <Route
+            path="/detalle/:id/:nombre/:artista"
+            element={<DetalleCancion />}
+          />
+
+          <Route path="/playlist" element={<Playlist />} />
+
+          <Route
+            path="/admin"
+            element={
+              <RutaProtegida usuarioLogueado={usuarioLogueado}>
+                <Admin />
+              </RutaProtegida>
+            }
+          />
+
+          <Route path="/admin/usuarios" element={<AdminUsuarios />} />
 
           <Route
             path="/admin/crear"
-            element={<FormularioCancion titulo="Crear Canción" />}
+            element={
+              <RutaProtegida usuarioLogueado={usuarioLogueado}>
+                <FormularioCancion titulo="Crear Canción" />
+              </RutaProtegida>
+            }
           />
+
           <Route
             path="/admin/editar/:id"
-            element={<FormularioCancion titulo="Editar Canción" />}
+            element={
+              <RutaProtegida usuarioLogueado={usuarioLogueado}>
+                <FormularioCancion titulo="Editar Canción" />
+              </RutaProtegida>
+            }
           />
         </Routes>
+
         <Footer />
       </BrowserRouter>
     </AuthProvider>
   );
 }
+
 export default App;
