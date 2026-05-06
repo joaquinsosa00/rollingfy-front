@@ -12,6 +12,7 @@ import Playlist from "./pages/PlayList";
 import RutaProtegida from "./componets/ProtectorAdmin";
 import AdminUsuarios from "./pages/AdminUsuarios";
 import { useState, useEffect } from "react";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function App() {
   const sesionUsuario = JSON.parse(localStorage.getItem("usuarioKey")) || false;
