@@ -70,7 +70,7 @@ const NavBar = ({ usuarioLogueado, setUsuarioLogueado, busqueda, setBusqueda }) 
                   title={`Hola, ${usuarioLogueado.nombreUsuario}`}
                   id="navbar-user-dropdown"
                   align="end"
-                  variant="warning"
+                  className="text-warning"
                   menuVariant="dark"
                 >
                   <NavDropdown.Item onClick={logout}>
