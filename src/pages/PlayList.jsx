@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import Swal from "sweetalert2";
 import { Link } from 'react-router-dom';
 
 const Playlist = () => {
@@ -55,8 +56,7 @@ const Playlist = () => {
   if (!usuario) {
     return (
       <Container>
-        Swal.fire("Debes iniciar sesion", "-------------.", "info");
-
+        Swal.fire("Debes iniciar sesion", "---aa----------.", "info");
       </Container>
     );
   }

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Swal from "sweetalert2";
+
 
 const GrillaReproductores = () => {
   const [canciones, setCanciones] = useState([]);
@@ -48,7 +50,7 @@ const agregarAPlaylist = (cancion) => {
    const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioKey'));
 
     if (!usuarioLogueado) {
-      alert('Debes iniciar sesión para agregar canciones a tu playlist.');
+       Swal.fire("Debes iniciar sesion", "-------------.", "info");
       return;
     }
 
