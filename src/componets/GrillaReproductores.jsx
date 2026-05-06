@@ -1,36 +1,40 @@
 import { useState, useEffect } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { cancionesIniciales } from '../helpers/DatosInicio';
 
-const GrillaReproductores = ({ busqueda }) => {
+const GrillaReproductores = () => {
   const [canciones, setCanciones] = useState([]);
   const [generoSeleccionado, setGeneroSeleccionado] = useState('Todos');
- 
+  const [busqueda, setBusqueda] = useState('');
+
 
   const [esCelular, setEsCelular] = useState(window.innerWidth < 768);
+
+
   const [cantidadVisible, setCantidadVisible] = useState(window.innerWidth < 768 ? 2 : 8);
+
 
   useEffect(() => {
     const revisarTamanioPantalla = () => {
       setEsCelular(window.innerWidth < 768);
     };
-
     window.addEventListener("resize", revisarTamanioPantalla);
-
     return () => window.removeEventListener("resize", revisarTamanioPantalla);
   }, []);
 
-  useEffect(() => {
-    const cancionesGuardadas = JSON.parse(localStorage.getItem('canciones')) || [];
 
-    if (cancionesGuardadas.length === 0) {
-      localStorage.setItem('canciones', JSON.stringify(cancionesIniciales));
-      setCanciones(cancionesIniciales);
-    } else {
-      setCanciones(cancionesGuardadas);
-    }
+  const servidor = window.location.hostname;
+
+  const URL_API = import.meta.env.VITE_API_URL || "http://localhost:3001/canciones";
+
+
+  useEffect(() => {
+    fetch(URL_API)
+      .then(respuesta => respuesta.json())
+      .then(datos => setCanciones(datos))
+      .catch(error => console.error("Error cargando canciones:", error));
   }, []);
+
 
   const mostrarMasCanciones = () => {
     if (esCelular) {
@@ -40,7 +44,7 @@ const GrillaReproductores = ({ busqueda }) => {
     }
   };
 
-  const agregarAPlaylist = (cancion) => {
+const agregarAPlaylist = (cancion) => {
    const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioKey'));
 
     if (!usuarioLogueado) {
@@ -115,36 +119,34 @@ const GrillaReproductores = ({ busqueda }) => {
     return coincideGenero && coincideTexto;
   });
 
+
+
   const cancionesAMostrar = cancionesFiltradas.slice(0, cantidadVisible);
 
   return (
     <Container className="mt-5 mb-5">
-      <h2 className="text-light mb-4 text-center">
-        Explora nuestra música
-      </h2>
+      <h2 className="text-light mb-4 text-center">Explora nuestra música</h2>
 
-      <div className="d-flex justify-content-center gap-3 mb-5 flex-wrap">
+
+      <div className="d-flex justify-content-center gap-3 mb-5">
         <Button
           variant={generoSeleccionado === 'Todos' ? 'success' : 'outline-success'}
           onClick={() => setGeneroSeleccionado('Todos')}
         >
           Todos
         </Button>
-
         <Button
           variant={generoSeleccionado === 'Rock' ? 'success' : 'outline-success'}
           onClick={() => setGeneroSeleccionado('Rock')}
         >
           Rock
         </Button>
-
         <Button
           variant={generoSeleccionado === 'Pop' ? 'success' : 'outline-success'}
           onClick={() => setGeneroSeleccionado('Pop')}
         >
           Pop
         </Button>
-
         <Button
           variant={generoSeleccionado === 'Trap' ? 'success' : 'outline-success'}
           onClick={() => setGeneroSeleccionado('Trap')}
@@ -152,6 +154,7 @@ const GrillaReproductores = ({ busqueda }) => {
           Trap
         </Button>
       </div>
+
 
       <Row className="g-3">
         {cancionesAMostrar.map((cancion) => (
@@ -168,8 +171,7 @@ const GrillaReproductores = ({ busqueda }) => {
                 loading="lazy"
                 title={cancion.nombre}
               ></iframe>
-
-              <Button
+             <Button
                 as={Link}
                 to={`/detalle/${cancion.id}/${cancion.nombre.replaceAll(" ", "-")}/${cancion.artista.replaceAll(" ", "-")}`}
                 variant="outline-success"
@@ -189,6 +191,7 @@ const GrillaReproductores = ({ busqueda }) => {
               </Button>
             </div>
           </Col>
+
         ))}
       </Row>
 
