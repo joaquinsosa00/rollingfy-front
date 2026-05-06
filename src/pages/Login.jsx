@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { Container, Row, Card, Col, Form, Button } from "react-bootstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { useGoogleLogin } from "@react-oauth/google";
 import Swal from "sweetalert2";
 import "../index.css";
 
@@ -16,7 +15,6 @@ const Login = ({ setUsuarioLogueado }) => {
   } = useForm();
 
   const navegacion = useNavigate();
-
   const [mostrarPassword, setMostrarPassword] = useState(false);
 
   const onSubmit = (datos) => {
@@ -35,7 +33,7 @@ const Login = ({ setUsuarioLogueado }) => {
 
       Swal.fire({
         title: "Bienvenido administrador",
-        text: "Iniciaste sesion correctamente",
+        text: "Iniciaste sesión correctamente",
         icon: "success",
       });
       navegacion("/admin");
@@ -47,7 +45,7 @@ const Login = ({ setUsuarioLogueado }) => {
     const usuarioEncontrado = usuarios.find(
       (usuario) =>
         usuario.email === datos.email.trim().toLowerCase() &&
-        usuario.password === datos.password.trim(),
+        usuario.password === datos.password.trim()
     );
 
     if (usuarioEncontrado) {
@@ -56,73 +54,28 @@ const Login = ({ setUsuarioLogueado }) => {
 
       Swal.fire({
         title: `Bienvenido ${usuarioEncontrado.nombreUsuario}`,
-        text: "Iniciaste sesion correctamente",
+        text: "Iniciaste sesión correctamente",
         icon: "success",
       });
       navegacion("/");
     } else {
       Swal.fire({
-        title: "Ocurrio un error",
+        title: "Ocurrió un error",
         text: "Credenciales incorrectas",
         icon: "error",
       });
     }
   };
 
-  const loginConGoogle = useGoogleLogin({
-    onSuccess: async (tokenGenerado) => {
-      const respuestaGoogle = await fetch(
-        "https://www.googleapis.com/oauth2/v3/userinfo",
-        {
-          headers: { Authorization: `Bearer ${tokenGenerado.access_token}` },
-        },
-      );
+  // Función temporal para el botón de Google
+  const loginConGoogleTemporal = () => {
+    Swal.fire({
+      title: "Próximamente",
+      text: "El inicio de sesión con Google estará disponible pronto.",
+      icon: "info",
+    });
+  };
 
-      if (!respuestaGoogle.ok) {
-        Swal.fire({
-          title: "Error",
-          text: "No fue posible iniciar sesión con Google.",
-          icon: "error",
-        });
-        return;
-      }
-
-      const datos = await respuestaGoogle.json();
-      const usuariosJSON = localStorage.getItem("usuarios");
-      const usuarios = usuariosJSON ? JSON.parse(usuariosJSON) : [];
-      const usuarioExistente = usuarios.find(
-        (usuario) => usuario.email === datos.email,
-      );
-
-      const usuarioGoogle = {
-        nombreUsuario: datos.name,
-        email: datos.email,
-        rol: "usuario",
-        playlist: [],
-      };
-
-      if (!usuarioExistente) {
-        usuarios.push(usuarioGoogle);
-        localStorage.setItem("usuarios", JSON.stringify(usuarios));
-      }
-
-      localStorage.setItem("usuarioKey", JSON.stringify(usuarioGoogle));
-      setUsuarioLogueado(usuarioGoogle);
-
-      Swal.fire({
-        title: `Hola ${datos.name}`,
-        icon: "success",
-      });
-      navegacion("/");
-    },
-    onError: () => {
-      Swal.fire({
-        title: "Error",
-        text: "No fue posible iniciar sesión con Google.",
-        icon: "error",
-      });
-    },
-  });
   return (
     <>
       <Container fluid>
@@ -172,6 +125,7 @@ const Login = ({ setUsuarioLogueado }) => {
                     <span
                       onClick={() => setMostrarPassword(!mostrarPassword)}
                       className="btnMusic"
+                      style={{ cursor: "pointer", position: "absolute", right: "15px", top: "40px" }}
                     >
                       {mostrarPassword ? <FaEyeSlash /> : <FaEye />}
                     </span>
@@ -193,7 +147,7 @@ const Login = ({ setUsuarioLogueado }) => {
                   <Button
                     type="button"
                     className="w-100 mt-2 bg-dark border-light d-flex align-items-center justify-content-center gap-2 fw-bold"
-                    onClick={() => loginConGoogle()}
+                    onClick={loginConGoogleTemporal}
                   >
                     <FcGoogle className="btnGoogle" /> Continuar con Google
                   </Button>
