@@ -71,15 +71,15 @@ const GrillaReproductores = () => {
         );
 
         if (cancionRepetida) {
-         Swal.fire({
+          Swal.fire({
 
-        icon: "error",
-        title: "La canción ya se encuentra en la playlist",
-        showConfirmButton: false,
-        timer: 1500
-      });
+            icon: "error",
+            title: "La canción ya se encuentra en la playlist",
+            showConfirmButton: false,
+            timer: 1500
+          });
 
-          return usuario;
+          return ;
         }
 
         return {
@@ -98,13 +98,13 @@ const GrillaReproductores = () => {
     localStorage.setItem('usuarios', JSON.stringify(usuariosActualizados));
     localStorage.setItem('usuarioKey', JSON.stringify(usuarioActualizado));
 
-              Swal.fire({
+    Swal.fire({
 
-        icon: "success",
-        title: "Cancion agregada a la playlist",
-        showConfirmButton: false,
-        timer: 1500
-      });
+      icon: "success",
+      title: "Cancion agregada a la playlist",
+      showConfirmButton: false,
+      timer: 1500
+    });
 
   };
 
