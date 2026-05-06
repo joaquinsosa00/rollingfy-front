@@ -87,41 +87,26 @@ const Playlist = () => {
             {playlist.map((cancion) => (
               <Col xs={12} md={6} lg={4} key={cancion.id}>
                 <Card className="bg-dark text-white border-0 h-100 shadow">
-                  <Card.Img
-                    variant="top"
-                    src={cancion.imagen}
-                    alt={cancion.nombre}
-                    style={{
-                      height: '250px',
-                      objectFit: 'cover'
-                    }}
-                  />
+                  <iframe
+                    style={{ borderRadius: "12px" }}
+                    src={cancion.url}
+                    width="100%"
+                    height="80"
+                    frameBorder="0"
+                    allowFullScreen
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                    title={cancion.nombre}
+                  ></iframe>
 
-                  <Card.Body>
-                    <Card.Title className="fw-bold">
-                      {cancion.nombre}
-                    </Card.Title>
+                  <Button
+                    variant="danger"
+                    className="w-100 rounded-pill"
+                    onClick={() => eliminarCancion(cancion.id)}
+                  >
+                    Eliminar de mi Playlist
+                  </Button>
 
-                    <Card.Text className="text-secondary">
-                      {cancion.artista}
-                    </Card.Text>
-
-                    <p className="mb-1">
-                      <strong>Álbum:</strong> {cancion.album}
-                    </p>
-
-                    <p className="mb-3">
-                      <strong>Género:</strong> {cancion.genero}
-                    </p>
-
-                    <Button
-                      variant="danger"
-                      className="w-100 rounded-pill"
-                      onClick={() => eliminarCancion(cancion.id)}
-                    >
-                      Eliminar de mi Playlist
-                    </Button>
-                  </Card.Body>
                 </Card>
               </Col>
             ))}

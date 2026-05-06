@@ -50,7 +50,7 @@ const agregarAPlaylist = (cancion) => {
    const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioKey'));
 
     if (!usuarioLogueado) {
-       Swal.fire("Debes iniciar sesion", "-------------.", "info");
+       Swal.fire("Debes iniciar sesion", "-------------.", "error");
       return;
     }
 
@@ -65,7 +65,8 @@ const agregarAPlaylist = (cancion) => {
         );
 
         if (cancionRepetida) {
-          alert('Esta canción ya está en tu playlist.');
+                 Swal.fire("Debes iniciar sesion", "-------------.", "success");
+
           return usuario;
         }
 
