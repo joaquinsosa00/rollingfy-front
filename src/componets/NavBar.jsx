@@ -66,10 +66,11 @@ const NavBar = ({ usuarioLogueado, setUsuarioLogueado, busqueda, setBusqueda }) 
                   </Nav.Link>
                 )}
 
-                <NavDropdown
+                <NavDropdown 
                   title={`Hola, ${usuarioLogueado.nombreUsuario}`}
                   id="navbar-user-dropdown"
                   align="end"
+                  variant="warning"
                   menuVariant="dark"
                 >
                   <NavDropdown.Item onClick={logout}>

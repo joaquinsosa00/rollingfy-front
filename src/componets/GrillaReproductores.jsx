@@ -79,7 +79,7 @@ const GrillaReproductores = () => {
             timer: 1500
           });
 
-          return ;
+          return;
         }
 
         return {
