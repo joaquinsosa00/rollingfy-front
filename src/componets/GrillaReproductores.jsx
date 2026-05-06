@@ -46,11 +46,17 @@ const GrillaReproductores = () => {
     }
   };
 
-const agregarAPlaylist = (cancion) => {
-   const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioKey'));
+  const agregarAPlaylist = (cancion) => {
+    const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioKey'));
 
     if (!usuarioLogueado) {
-       Swal.fire("Debes iniciar sesion", "-------------.", "error");
+      Swal.fire({
+
+        icon: "error",
+        title: "Debes iniciar sesion",
+        showConfirmButton: false,
+        timer: 1500
+      });
       return;
     }
 
@@ -65,7 +71,7 @@ const agregarAPlaylist = (cancion) => {
         );
 
         if (cancionRepetida) {
-                 Swal.fire("Debes iniciar sesion", "-------------.", "success");
+          Swal.fire("Debes iniciar sesion", "-------------.", "success");
 
           return usuario;
         }
@@ -84,17 +90,17 @@ const agregarAPlaylist = (cancion) => {
     );
 
     localStorage.setItem('usuarios', JSON.stringify(usuariosActualizados));
-   localStorage.setItem('usuarioKey', JSON.stringify(usuarioActualizado));
+    localStorage.setItem('usuarioKey', JSON.stringify(usuarioActualizado));
 
     alert('Canción agregada a My Playlist.');
   };
 
   const normalizarTexto = (texto) => {
     return texto ? texto
-                     .normalize ('NFD')
-                     .replace(/[\u0300-\u036f]/g, "")
-                     .toLowerCase()
-                   : "";
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      : "";
   };
 
   const palabrasIgnoradas = ["y", "e", "ft", "feat", "con", "with", "de", "el", "la", "los", "las"];
@@ -103,19 +109,19 @@ const agregarAPlaylist = (cancion) => {
     const coincideGenero =
       generoSeleccionado === 'Todos' || cancion.genero === generoSeleccionado;
 
-      const textoCancion = normalizarTexto(`${cancion.nombre} ${cancion.artista}`);
-      const terminosBusqueda = normalizarTexto(busqueda)
+    const textoCancion = normalizarTexto(`${cancion.nombre} ${cancion.artista}`);
+    const terminosBusqueda = normalizarTexto(busqueda)
       .split(/[\s,-]+/)
-     .filter(termino => 
+      .filter(termino =>
         termino.length > 0 && !palabrasIgnoradas.includes(termino));
 
-      
+
     const textoBuscado = busqueda.toLowerCase();
 
     const nombreSeguro = cancion.nombre ? cancion.nombre.toLowerCase() : "";
     const artistaSeguro = cancion.artista ? cancion.artista.toLowerCase() : "";
 
-   const coincideTexto = terminosBusqueda.every(termino => 
+    const coincideTexto = terminosBusqueda.every(termino =>
       textoCancion.includes(termino)
     );
 
@@ -174,7 +180,7 @@ const agregarAPlaylist = (cancion) => {
                 loading="lazy"
                 title={cancion.nombre}
               ></iframe>
-             <Button
+              <Button
                 as={Link}
                 to={`/detalle/${cancion.id}/${cancion.nombre.replaceAll(" ", "-")}/${cancion.artista.replaceAll(" ", "-")}`}
                 variant="outline-success"
