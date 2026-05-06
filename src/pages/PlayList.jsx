@@ -56,7 +56,7 @@ const Playlist = () => {
   if (!usuario) {
     return (
       <Container>
-        Swal.fire("Debes iniciar sesion", "---aa----------.", "info");
+        Swal.fire("Debes iniciar sesion", "---aa----------.", "success");
       </Container>
     );
   }

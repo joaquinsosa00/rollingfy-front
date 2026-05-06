@@ -92,7 +92,8 @@ const GrillaReproductores = () => {
     localStorage.setItem('usuarios', JSON.stringify(usuariosActualizados));
     localStorage.setItem('usuarioKey', JSON.stringify(usuarioActualizado));
 
-    alert('Canción agregada a My Playlist.');
+             Swal.fire("Cancion agregada con éxito", "-------------.", "success");
+
   };
 
   const normalizarTexto = (texto) => {
