@@ -176,7 +176,7 @@ const agregarAPlaylist = (cancion) => {
                 to={`/detalle/${cancion.id}/${cancion.nombre.replaceAll(" ", "-")}/${cancion.artista.replaceAll(" ", "-")}`}
                 variant="outline-success"
                 size="sm"
-                className="text-decoration-none rounded-pill fw-bold mt-2 align-self-start"
+                className="text-decoration-none rounded-pill fw-bold mt-2"
               >
                 Ver Detalle
               </Button>
@@ -184,7 +184,7 @@ const agregarAPlaylist = (cancion) => {
               <Button
                 variant="success"
                 size="sm"
-                className="rounded-pill fw-bold mt-2 align-self-start"
+                className="rounded-pill fw-bold mt-2 "
                 onClick={() => agregarAPlaylist(cancion)}
               >
                 Agregar a Playlist

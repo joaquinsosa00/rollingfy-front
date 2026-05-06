@@ -54,17 +54,10 @@ const Playlist = () => {
 
   if (!usuario) {
     return (
-      <div className="bg-black text-white min-vh-100 py-5">
-        <Container>
-          <h2>Debes iniciar sesión para ver tu playlist</h2>
+      <Container>
+        Swal.fire("Debes iniciar sesion", "-------------.", "info");
 
-          <Link to="/login">
-            <Button variant="outline-light" className="rounded-pill mt-3">
-              Iniciar sesión
-            </Button>
-          </Link>
-        </Container>
-      </div>
+      </Container>
     );
   }
 
