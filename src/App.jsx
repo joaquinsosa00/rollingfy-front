@@ -10,7 +10,7 @@ import Footer from "./componets/Footer";
 import FormularioCancion from "./pages/Canciones/FormularioCancion";
 import Playlist from "./pages/PlayList";
 import RutaProtegida from "./componets/ProtectorAdmin";
-import AdminUsuarios from "./Pages/AdminUsuarios";
+import AdminUsuarios from "./pages/AdminUsuarios";
 import { useState, useEffect } from "react";
 
 function App() {
