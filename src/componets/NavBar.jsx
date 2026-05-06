@@ -67,8 +67,7 @@ const NavBar = ({ usuarioLogueado, setUsuarioLogueado, busqueda, setBusqueda }) 
                 )}
 
                 <NavDropdown 
-                  title={`Hola, ${usuarioLogueado.nombreUsuario}`}
-                  id="navbar-user-dropdown"
+                  title={<span className="text-warning">Hola, {usuarioLogueado.nombreUsuario}</span>}id="navbar-user-dropdown"
                   align="end"
                   className="text-warning"
                   menuVariant="dark"
