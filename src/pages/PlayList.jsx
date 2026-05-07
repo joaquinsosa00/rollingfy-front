@@ -101,7 +101,7 @@ const Playlist = () => {
                     style={{ borderRadius: "12px" }}
                     src={cancion.url}
                     width="100%"
-                    height="200"
+                    height="360"
                     frameBorder="0"
                     allowFullScreen
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
